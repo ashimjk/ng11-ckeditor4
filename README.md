@@ -1,27 +1,60 @@
-# Ng11Ckeditor4
+# Angular 11 - CK-Editor 4
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.15.
+## Build Custom CK-Editor
 
-## Development server
+- Go to CK-Editor Builder site
+- Upload [build-config.js](build-config.js)
+- Verify Plugins
+- Select Moono-Lisa Skin
+- Select English and Arabic Language
+- Select Source as Download Type
+- Now download CK-Editor
+- Update version and revision in [ckeditor.js](src/assets/ckeditor/ckeditor.js)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+NOTE: Optimized (Download Type) is not working for 4.17.2. It gives error when we load ckeditor in browser.
 
-## Code scaffolding
+## Cleanup Custom Build
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Remove all samples files like sample, dev
+- Remove `editor-delayed-creation` warning message from [editor.js](src/assets/ckeditor/core/editor.js)
 
-## Build
+## Angular Integration
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+`npm install ckeditor4-angular`
 
-## Running unit tests
+By default, it will automatically fetch the latest CKEditor 4` standard-all preset` via CDN.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Reference : [CKEditor 4 Angular Integration](https://ckeditor.com/docs/ckeditor4/latest/guide/dev_angular.html#basic-usage)
+- Example : [CKEditor 4 Angular Integration Example](https://ckeditor.com/docs/ckeditor4/latest/examples/angular.html#/)
+- GitHub Repo : [ckeditor4-angular](https://github.com/ckeditor/ckeditor4-angular)
 
-## Running end-to-end tests
+## Add External Plugin Using Angular Component
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- Provide cdn url to `editorUrl` property
+- Listen for `namespaceLoaded` emitter
+- Register external plugin listener
 
-## Further help
+```html
+<ckeditor
+  editorUrl='https://cdn.ckeditor.com/4.17.2/full-all/ckeditor.js'
+  (namespaceLoaded)="onNamespaceLoaded($event)"
+></ckeditor>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```js
+declare let CKEDITOR: any;
+
+public onNamespaceLoaded(event: CKEditor4.EventInfo) {
+  // Add external like `placeholder` plugin which will be available for each
+  CKEDITOR.plugins.addExternal('placeholder', 'http://localhost:4200/assets/ckeditor-standard/plugins/placeholder/plugin.js');
+  CKEDITOR.plugins.addExternal('placeholder_select', 'http://localhost:4200/assets/ckeditor-standard/plugins/placeholder_select/plugin.js');
+}
+```
+
+## References
+
+- [CK-Editor CDN](https://cdn.ckeditor.com/)
+- [CK-Editor Builder](https://ckeditor.com/cke4/builder)
+- [CK-Editor Plugins](https://ckeditor.com/cke4/addons/plugins/all)
+- [CK-Editor Plugins Documentation](https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_plugins.html)
+

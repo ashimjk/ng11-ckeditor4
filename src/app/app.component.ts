@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `
+    <lib-ckeditor></lib-ckeditor>
+  `
 })
 export class AppComponent {
-  title = 'ng11-ckeditor4';
 }
