@@ -11,7 +11,9 @@
 - Now download CK-Editor
 - Update version and revision in [ckeditor.js](src/assets/ckeditor/ckeditor.js)
 
-NOTE: Optimized (Download Type) is not working for 4.17.2. It gives error when we load ckeditor in browser.
+NOTE:
+- In Optimized (Download Type) v4.17.2, ckeditor is not working. It gives an error when we load ckeditor in browser.
+- In Optimized (Download Type) v4.19.0, placeholder select is not working. For fix, remove timestamp from `ckeditor.js`.
 
 ## Cleanup Custom Build
 
