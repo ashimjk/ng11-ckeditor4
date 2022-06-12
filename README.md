@@ -55,6 +55,7 @@ public onNamespaceLoaded(event: CKEditor4.EventInfo) {
 
 ## References
 
+- [CK-Editor Releases](https://github.com/ckeditor/ckeditor4-releases/blob/master/CHANGES.md)
 - [CK-Editor CDN](https://cdn.ckeditor.com/)
 - [CK-Editor Builder](https://ckeditor.com/cke4/builder)
 - [CK-Editor Plugins](https://ckeditor.com/cke4/addons/plugins/all)
